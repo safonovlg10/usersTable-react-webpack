@@ -13,9 +13,17 @@ class User extends Component{
 
 
     render(){
+
         return(
             <tr  onClick={this.setActiveUser.bind(this)}
-                 className={this.props.activeUser.id === this.props.user.id ? 'active-user': null}>
+                 className={
+                     this.props.activeUser.id === this.props.user.id &&
+                     this.props.activeUser.firstName === this.props.user.firstName &&
+                     this.props.activeUser.lastName === this.props.user.lastName &&
+                     this.props.activeUser.email === this.props.user.email &&
+                     this.props.activeUser.phone === this.props.user.phone &&
+                     this.props.activeUser.address.zip === this.props.user.address.zip
+                     ? 'active-user': null}>
 
                 <td>{this.props.user.id}</td>
                 <td>{this.props.user.firstName}</td>
@@ -46,14 +54,9 @@ class TableBodyComponent extends Component {
         });
 
         return (
-
-
                 <tbody>
                 {rowsUser}
                 </tbody>
-
-
-
         );
     }
 }

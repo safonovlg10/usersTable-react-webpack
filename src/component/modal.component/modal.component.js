@@ -12,6 +12,13 @@ class Modal extends Component{
             lastName: '',
             email: '',
             phone: '',
+            address: {
+                streetAddress: '9792 Mattis Ct',
+                city: 'Waukesha',
+                state: 'WI',
+                zip: '22178'
+            },
+            description: 'et lacus magna dolor...',
         };
     }
 

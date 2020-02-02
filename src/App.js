@@ -32,33 +32,22 @@ class App extends Component {
 
     loadData = (url) =>{
 
-       let result = load(url).then(
-            response => {
-                this.setState({
-                    users: JSON.parse(response),
-                    isLoading: false,
-                    btnActiveAddUser: true
-                });
-            },
-            error =>{
+       return load(url).then(
+           response => {
+               let user = JSON.parse(response);
+
+               this.setState({
+                   users: _.orderBy(user, this.state.sortField, this.state.sort),
+                   isLoading: false,
+                   btnActiveAddUser: true
+               });
+           },
+           error => {
                console.error(error);
-            }
-        );
-
-        this.setState({
-            users: _.orderBy(result, this.state.sortField, this.state.sort)
-        });
-
-       return result;
+           }
+       );
 
     };
-
-
-
-
-
-
-
     onSort = (sortField) =>{
         const cloneData = this.state.users.concat();
         const sort = this.state.sort === 'asc' ? 'desc' : 'asc';
@@ -133,7 +122,7 @@ class App extends Component {
               <div className='content'>
               <Modal
                   addNewUser={this.addNewUser}
-                  onShowModal={this.onShowModal}
+                  offShowModal={this.offShowModal}
               />
             <aside>
               <Body
@@ -153,7 +142,7 @@ class App extends Component {
                   pageCount={pageCount}
                   sizeUserFile={this.state.users}
                   btnActiveAddUser={this.state.btnActiveAddUser}
-                  offShowModal={this.offShowModal}
+
               />
           </aside>
              <Footer/>
