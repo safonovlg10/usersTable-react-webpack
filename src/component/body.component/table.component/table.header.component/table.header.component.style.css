@@ -1,0 +1,46 @@
+.list-user th {
+    position: relative;
+    font-size: 20px;
+    font-weight: normal;
+    background: #A9C7FF;
+    border-bottom: 1px solid #fff;
+    color: #039;
+    padding: 8px;
+}
+
+.list-user th:hover{
+    cursor: pointer;
+    background: #ccddff;
+}
+
+.sort-icon-asc::after{
+
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    top: 13px;
+    margin-left: 20px;
+    background: url("../../../../../img/sort_dow.png") no-repeat center;
+
+}
+.sort-icon-desc::after{
+
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    top: 13px;
+    margin-left: 20px;
+    background: url("../../../../../img/sort_up.png") no-repeat center;
+
+}
+
+.border-right-th{
+    border-right: 1px solid #039;
+    width: 50px;
+
+}
+

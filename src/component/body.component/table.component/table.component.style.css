@@ -1,0 +1,14 @@
+.table-container{
+    margin-bottom: 60px;
+}
+
+.list-user {
+    font-size: 14px;
+    background: white;
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+

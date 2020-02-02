@@ -1,0 +1,27 @@
+.list-user td {
+
+    border-bottom: 1px solid #fff;
+    color: #669;
+    border-top: 1px solid transparent;
+    padding: 8px;
+    font-size: 17px;
+}
+.list-user tr {
+    background: #e8edff;
+}
+.list-user tr:hover {
+    background: #ccddff;
+
+}
+.list-user .active-user{
+    background: #ccddff;
+}
+.border-right-th{
+    border-right: 1px solid #039;
+    width: 50px;
+
+}
+.marked:active{
+    background: #ccddff;
+}
+
