@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import $ from 'jquery'
-
-
 import './App.css';
 import Header from './component/header.componet/header.componet';
 import Body from './component/body.component/body.component';
@@ -13,6 +11,7 @@ import Footer from './component/footer.component/footer.component';
 
 
 class App extends Component {
+
     constructor(props){
         super(props);
 
@@ -30,25 +29,28 @@ class App extends Component {
 
     };
 
+
+
     loadData = (url) =>{
 
-       return load(url).then(
-           response => {
-               let user = JSON.parse(response);
 
-               this.setState({
-                   users: _.orderBy(user, this.state.sortField, this.state.sort),
-                   isLoading: false,
-                   btnActiveAddUser: true
-               });
-           },
-           error => {
-               console.error(error);
-           }
-       );
-
+        return load(url).then(
+            response => {
+                let users =  JSON.parse(response);
+                this.setState({
+                    users: _.orderBy(users, this.state.sortField, this.state.sort),
+                    isLoading: false,
+                    btnActiveAddUser: true
+                });
+            },
+            error => {
+                console.error(error);
+            }
+        );
     };
+
     onSort = (sortField) =>{
+
         const cloneData = this.state.users.concat();
         const sort = this.state.sort === 'asc' ? 'desc' : 'asc';
         const data = _.orderBy(cloneData, sortField, sort);
@@ -59,8 +61,11 @@ class App extends Component {
         this.setState({search: value});
     };
 
+
+
     filterData = () =>{
         const {users,search} = this.state;
+
         if(!search) return this.state.users;
         let result = users.filter(item => {
             return (
@@ -108,48 +113,49 @@ class App extends Component {
 
     );
 
-  render() {
-         const filteredData = this.filterData();
-         const pageSizeMax = 50;
-         const pageCount = Math.ceil(filteredData.length / pageSizeMax);
-         const displayData = _.chunk(filteredData , pageSizeMax)[this.state.currentPage];
+    render() {
 
-    return (
+        const filteredData = this.filterData();
+        const pageSizeMax = 50;
+        const pageCount = Math.ceil(filteredData.length / pageSizeMax);
+        const displayData = _.chunk(filteredData , pageSizeMax)[this.state.currentPage];
 
-      <div className='content-height100'>
 
-          <Header/>
-              <div className='content'>
-              <Modal
-                  addNewUser={this.addNewUser}
-                  offShowModal={this.offShowModal}
-              />
-            <aside>
-              <Body
-                  users={displayData? displayData: []}
-                  activeUser={this.state.activeUser}
-                  upDataState={this.upDataState}
-                  onSort={this.onSort}
-                  sort={this.state.sort}
-                  onSearch={this.onSearch}
-                  sortField={this.state.sortField}
-                  isSelectFile={this.state.isSelectFile}
-                  onSelectFile={this.onSelectFile}
-                  isLoading={this.state.isLoading}
-                  currentPage={this.state.currentPage}
-                  pageChangeHandler={this. pageChangeHandler}
-                  pageSizeMax={pageSizeMax}
-                  pageCount={pageCount}
-                  sizeUserFile={this.state.users}
-                  btnActiveAddUser={this.state.btnActiveAddUser}
+        return (
 
-              />
-          </aside>
-             <Footer/>
-              </div>
-      </div>
-    );
-  }
+            <div className='content-height100'>
+
+                <Header/>
+                <div className='content'>
+                    <Modal
+                        addNewUser={this.addNewUser}
+                        offShowModal={this.offShowModal}
+                    />
+                    <aside>
+                        <Body
+                            users={displayData? displayData: []}
+                            activeUser={this.state.activeUser}
+                            upDataState={this.upDataState}
+                            onSort={this.onSort}
+                            sort={this.state.sort}
+                            onSearch={this.onSearch}
+                            sortField={this.state.sortField}
+                            isSelectFile={this.state.isSelectFile}
+                            onSelectFile={this.onSelectFile}
+                            isLoading={this.state.isLoading}
+                            currentPage={this.state.currentPage}
+                            pageChangeHandler={this. pageChangeHandler}
+                            pageSizeMax={pageSizeMax}
+                            pageCount={pageCount}
+                            sizeUserFile={this.state.users}
+                            btnActiveAddUser={this.state.btnActiveAddUser}
+                        />
+                    </aside>
+                    <Footer/>
+                </div>
+            </div>
+        );
+    }
 }
 
 
